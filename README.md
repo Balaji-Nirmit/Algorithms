@@ -37,4 +37,4 @@ class Main {
         // Output the last value in the array (prefix function)
         System.out.println(arr[str.length() - 1]);
     }
-}```
+}
