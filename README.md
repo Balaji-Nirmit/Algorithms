@@ -38,3 +38,61 @@ class Main {
         System.out.println(arr[str.length() - 1]);
     }
 }
+```
+
+## string matching using KMP
+
+```java
+class Main{
+    public static void main(String[] args){
+        String str="onionionson";
+        String st="onion1s";
+        // finding the LPS for the st
+        int[] arr=new int[st.length()];
+        arr[0]=0;
+        int pre=0,suf=1;
+        while(suf<st.length()){
+            if(st.charAt(pre)==st.charAt(pre)){
+                arr[suf]=pre+1;
+                pre++;
+                suf++;
+            }
+            else{
+                if(pre==0){
+                    arr[suf]=pre+1;
+                    suf++;
+                }
+                else{
+                    pre=arr[pre-1];
+                }
+            }
+        }
+        // now matching 
+        int first=0,second=0;
+        while(second<st.length() && first<str.length()){
+            if(st.charAt(second)==str.charAt(first)){
+                first++;
+                second++;
+            }
+            else{
+                if(second==0){
+                    first++;
+                }
+                else{
+                    second=arr[second-1];
+                }
+            }
+        }
+        // output index
+        if(second==st.length()){
+            System.out.println(first-second);
+        }
+        // here if second == st.length then loop breaks since got the answer;
+        // if the loops breaks and second !=st.length which means that loop breaks due to
+        // str being traversed completely. which means nothing is found
+        else{
+            System.out.println(-1);
+        }
+    }
+}
+```
