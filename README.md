@@ -2,7 +2,7 @@
 algorithms
 
 # checking if a character is present in string in java
-```
+```java
 class Main{
     public static void main(String[] args){
         String str="aeiou";
