@@ -1,6 +1,17 @@
 # Algorithms
 algorithms
 
+# checking if a character is present in string in java
+```
+class Main{
+    public static void main(String[] args){
+        String str="aeiou";
+        int i=0,e=str.length();
+        System.out.println(str.indexOf('i')==1);
+    }
+}
+```
+
 # Knuth Moris Pratt Algorithm
 ## longest prefix suffix
 
