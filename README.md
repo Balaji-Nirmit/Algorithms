@@ -132,3 +132,30 @@ class Solution {
     }
 }
 ```
+
+# sorting a string
+sorting string is very different and can be done in o(n)
+we know 'a'<'b'<'c'<...<'z' if taking lower and same for uppercase also
+so count the frequency of each alphabet in the sentence and print them 
+
+```java
+class Main {
+    public static void main(String[] args) {
+        String str="abcdefhshfgesafeywge";
+        char[] arr=str.toCharArray();
+        int[] res=new int[26];
+        for(char i:arr){
+            res[i-'a']++;
+        }
+        String sol="";
+        for(int i=0;i<26;i++){
+            char temp=(char)('a'+i);
+            while(res[i]!=0){
+                sol=sol+temp;
+                res[i]--;
+            }
+        }
+        System.out.println(sol);
+    }
+}
+```
