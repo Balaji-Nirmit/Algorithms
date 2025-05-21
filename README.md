@@ -107,3 +107,29 @@ class Main{
     }
 }
 ```
+
+
+# checking if string is rotated or not
+
+say we have a string str1="nirmit"
+and str2="rmitni"
+and str3="itnirm"
+when we rotate str1 2 times anticlock we get str2  and clockwise then str3
+so how to check?
+```
+nirmitnirmit
+```
+we can see that when we double concatenate the str1 all the rotated one by any degree whether anti or not will be present in it 
+
+
+```java
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        if(s.length()!=goal.length()){
+            return false;
+        }
+        return (s+s).contains(goal);
+    }
+}
+```
+i.e. wheneve
