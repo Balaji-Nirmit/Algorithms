@@ -159,3 +159,18 @@ class Main {
     }
 }
 ```
+
+# integer to roman 
+```java
+class Solution {
+    public String intToRoman(int num) {
+        String[] ones={"","I","II","III","IV","V","VI","VII","VIII","IX"};//ALL SINGLE DIGIT
+        String[] tens={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};//ALL DOUBLE DIGITS
+        String[] huns={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};//ALL TRIPLE DIGITS
+        String[] thos={"","M","MM","MMM","MMMM"};//ALL 4 DIGITS
+        return thos[num/1000]+huns[(num%1000)/100]+tens[(num%100)/10]+ones[num%10];
+    }
+}
+```
+this is very cool one liner 
+make array from 0-9, 10-90,100-900,1000-9999 of length 10 each
