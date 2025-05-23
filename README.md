@@ -174,3 +174,42 @@ class Solution {
 ```
 this is very cool one liner 
 make array from 0-9, 10-90,100-900,1000-9999 of length 10 each
+
+# factorial of a large number 
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+class Main {
+    public static void main(String[] args) {
+        int num=100;
+
+
+        ArrayList<Integer> ans=new ArrayList<>();
+        ans.add(1);
+        while(num>1){
+            int carry=0;
+            int res=0;
+            int size=ans.size();
+            for(int i=0;i<size;i++){
+                res=ans.get(i)*num+carry;
+                carry=res/10;
+                ans.set(i,res%10);
+            }
+            while(carry>0){
+                ans.add(carry%10);
+                carry/=10;
+            }
+            // this above loop is used to push digit of carry into the array since one digit at one index
+            num--;
+        }
+        Collections.reverse(ans);
+        System.out.println(ans);
+        // we use array here instead of string as string is also array of characters so same concept here also
+    }
+}
+```
+
+```
+[9, 3, 3, 2, 6, 2, 1, 5, 4, 4, 3, 9, 4, 4, 1, 5, 2, 6, 8, 1, 6, 9, 9, 2, 3, 8, 8, 5, 6, 2, 6, 6, 7, 0, 0, 4, 9, 0, 7, 1, 5, 9, 6, 8, 2, 6, 4, 3, 8, 1, 6, 2, 1, 4, 6, 8, 5, 9, 2, 9, 6, 3, 8, 9, 5, 2, 1, 7, 5, 9, 9, 9, 9, 3, 2, 2, 9, 9, 1, 5, 6, 0, 8, 9, 4, 1, 4, 6, 3, 9, 7, 6, 1, 5, 6, 5, 1, 8, 2, 8, 6, 2, 5, 3, 6, 9, 7, 9, 2, 0, 8, 2, 7, 2, 2, 3, 7, 5, 8, 2, 5, 1, 1, 8, 5, 2, 1, 0, 9, 1, 6, 8, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+```
