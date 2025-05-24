@@ -239,3 +239,37 @@ class Solution {
     }
 }
 ```
+
+# smallest substring with all characters using Sliding Window
+```java
+class Main {
+    public static void main(String[] args) {
+        String s="aabbbcbbac";
+        int diff=0;
+        String temp="";
+        for(int i=0;i<s.length();i++){
+            if(temp.indexOf(s.charAt(i))==-1){
+                diff++;
+                temp+=s.charAt(i);
+            }
+        }// using above we counted the unique letters in the string
+        int[] arr=new int[256];
+        int first=0,second=0,len=s.length();
+        while(second<s.length()){
+            while(diff>0 && second<s.length()){
+                if(arr[s.charAt(second)]==0){ diff--;}
+                arr[s.charAt(second)]++;
+                second++;
+            }
+            len=Math.min(len,second-first);
+            while(diff!=1){
+                len=Math.min(len,second-first);
+                arr[s.charAt(first)]--;
+                if(arr[s.charAt(first)]==0){ diff++;}
+                first++;
+            }
+        }
+        System.out.println(len);
+    }
+}
+```
