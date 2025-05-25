@@ -273,3 +273,42 @@ class Main {
     }
 }
 ```
+# Min Chars to Add in starting for Palindrome 
+
+flow is 
+ string s---> reverse s to rev_s----> s=s+"&"+rev_s-----> apply kmp lps on it and find lps-----> ans= original size of s-lps
+
+```java
+class Main {
+    public static void main(String[] args) {
+        String str="cbabc";
+        String rev_str="";
+        // reversing the string
+        for(int i=str.length()-1;i>=0;i--){
+            rev_str=rev_str+str.charAt(i);
+        }
+        str=str+"&"+rev_str;
+        int[] arr=new int[str.length()];
+        arr[0]=0;
+        // longest prefix palindrome-longest palindrome from starting;
+        // to find that apply knuth morris pratt lps
+        int pre=0,suf=1;
+        while(suf<str.length()){
+            if(str.charAt(pre)==str.charAt(suf)){
+                arr[suf]=pre+1;
+                pre++;
+                suf++;
+            }
+            else{
+                if(pre==0){
+                    arr[suf]=0;
+                    suf++;
+                }else{
+                    pre=arr[pre-1];
+                }
+            }
+        }
+        System.out.println("len of str to be added-"+(rev_str.length()-arr[str.length()-1]));
+    }
+}
+```
