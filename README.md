@@ -312,3 +312,8 @@ class Main {
     }
 }
 ```
+
+this way we print the min len to add 
+if we need to find the palindromic string also then in do last len characters of s in reversed +s
+- example if s='roorsp' and minimum len to add for palindrome is len=2 then add last 2  characters of s  'ps' in rreversed in s
+- so 'ps'+'roorsp'='psroorsp'
