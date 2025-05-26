@@ -317,3 +317,51 @@ this way we print the min len to add
 if we need to find the palindromic string also then in do last len characters of s in reversed +s
 - example if s='roorsp' and minimum len to add for palindrome is len=2 then add last 2  characters of s  'ps' in rreversed in s
 - so 'ps'+'roorsp'='psroorsp'
+
+
+example below
+```java
+class Solution {
+    public String shortestPalindrome(String s) {
+        // first reverse the given string
+        String temp="";
+        String temp1=s;
+        for(int i=s.length()-1;i>=0;i--){
+            temp=temp+s.charAt(i);
+        }
+        s=s+"$"+temp;
+        // now apply lps on it to find the longest prefix palindrome
+        // which which would be the lps (kmp) on s"$"+rev_s
+        int[] arr=new int[s.length()];
+        arr[0]=0;
+        int pre=0,suf=1;
+        while(suf<s.length()){
+            if(s.charAt(pre)==s.charAt(suf)){
+                arr[suf]=pre+1;
+                pre++;
+                suf++;
+            }else{
+                if(pre==0){
+                    arr[suf]=0;
+                    suf++;
+                }else{
+                    pre=arr[pre-1];
+                }
+            }
+        }
+        // longest prefix palindrome is arr[s.length()-1]
+        int length_of_palindrome=temp.length()-arr[s.length()-1];
+        String sol="";
+        int index=0;
+        // we need reverse but why starting from 0 then 
+        // it is because temp is already reversed
+        while(length_of_palindrome>0){
+            sol=sol+temp.charAt(index);
+            index++;
+            length_of_palindrome--;
+        }
+        // added temp1 since we need original text
+        return sol+temp1;
+    }
+}
+```
