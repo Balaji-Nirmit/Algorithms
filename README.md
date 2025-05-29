@@ -368,9 +368,6 @@ class Solution {
 
 # singly linkedlist
 ```java
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
-
 class LinkedList{
     private Node head;
     private Node tail;
