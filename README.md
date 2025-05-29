@@ -365,3 +365,147 @@ class Solution {
     }
 }
 ```
+
+# singly linkedlist
+```java
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class LinkedList{
+    private Node head;
+    private Node tail;
+    private int size;
+    // inserting element at first
+    public void insertFirst(int value){
+        Node temp=new Node(value);
+        temp.next=head;
+        // this we do so that the next of this node will point to the current head
+        head=temp;
+        // now this temp will become the head
+        if(tail==null){
+            tail=head;
+        }
+        size+=1;
+    }
+    // displaying the list;
+    public void display(){
+        Node temp=head;
+        // first make a temp head and move this temp node not the head
+        while(temp!=null){
+            // why temp is null since temp is the of data type node so bydefault it will be next
+            System.out.print(temp.value+"->");
+            temp=temp.next;
+            // this is will the node to next node
+        }
+        System.out.println("END");
+    }
+    // inserting element at the last
+    public void insertLast(int value){
+        if(tail==null){
+            insertFirst(value);
+            return;
+        }
+        Node node=new Node(value);
+        // this new node has next null so tail.next will have its address and tail=node means tail.next after will become null
+        tail.next=node;
+        tail=node;
+        size+=1;
+        // we can also traverse the head to insert but that will be o(n) and this is o(1)
+    }
+    // inserting at nth position
+    public void insertPosition(int value,int index){
+        if(index==0){
+            insertFirst(value);
+            return;
+        }
+        if(index==size){
+            insertLast(value);
+            return;
+        }
+        Node temp=head;
+        // traverse to the position
+        for(int i=1;i<index;i++){
+            temp=temp.next;
+        }
+        Node node=new Node(value,temp.next);
+        // this will make the new to connect to right part of the list
+        // now below will connect to left part
+        temp.next=node;
+        size+=1;
+    }
+    // delete first
+    public void deleteFirst(){
+        head=head.next;
+        // we just need to move the head to next 
+        if(head.next==null){
+            tail=null;
+        }
+        size-=1;
+    }
+    //get node at position
+    public Node get(int index){
+        Node temp=head;
+        for(int i=0;i<index;i++){
+            temp=temp.next;
+        }
+        return temp;
+    }
+    // delete last
+    public void deleteLast(){
+        if(size<=1){
+            deleteFirst();
+            return;
+        }
+        Node secondLast=get(size-2);
+        tail=secondLast;
+        tail.next=null;
+        size-=1;
+    }
+    // delete position
+    public void deletePosition(int index){
+        if(index==0){
+            deleteFirst();
+            return;
+        }
+        if(index == size-1){
+            deleteLast();
+        }
+        Node beforeIndex=get(index-1);
+        beforeIndex.next=beforeIndex.next.next;
+        // just change the next address of beforeIndex to next address of index
+    }
+    //  this is the node of the linked list
+    private class Node{
+        private int value;
+        private Node next;
+        public Node(int value){
+            this.value=value;
+        }
+        public Node(int value,Node next){
+            this.value=value;
+            this.next=next;
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        LinkedList ll=new LinkedList();
+        ll.insertFirst(8);
+        ll.insertFirst(10);
+        ll.insertLast(12);
+        ll.insertLast(15);
+        ll.display();
+        ll.insertPosition(13,1);
+        ll.display();
+        ll.insertPosition(15,2);
+        ll.display();
+        ll.deleteFirst();
+        ll.display();
+        ll.deleteLast();
+        ll.display();
+        ll.deletePosition(1);
+        ll.display();
+    }
+}
+```
