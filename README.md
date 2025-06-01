@@ -506,3 +506,105 @@ class Main {
     }
 }
 ```
+
+# Doubly linkedlist
+
+```java
+class LinkedList{
+    private Node head;
+    private Node tail;
+    private int size;
+    // insert at first
+    public void insertFirst(int value){
+        Node node=new Node(value);
+        node.next=head;
+        node.prev=null;
+        if(head!=null){
+            head.prev=node;
+        }
+        head=node;
+        if(tail==null){
+            tail=head;
+        }
+        size++;
+    }
+    //  display the ll
+    public void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.value+"->");
+            temp=temp.next;
+        }
+        System.out.println("END");
+    }
+    // display ll reverse
+    public void displayReverse(){
+        Node temp=tail;
+        while(temp!=null){
+            System.out.print(temp.value+"->");
+            temp=temp.prev;
+        }
+        System.out.println("START");
+    }
+    // insert at last
+    public void insertLast(int value){
+        if (tail==null){
+            insertFirst(value);
+            return;
+        }
+        Node node=new Node(value);
+        tail.next=node;
+        node.prev=tail;
+        tail=node;
+        size++;
+    }
+    // insert at position 
+    public void insertPosition(int value,int index){
+        if(index==0){
+            insertFirst(value);
+            return;
+        }
+        if(size==index-1){
+            insertLast(value);
+            return;
+        }
+        Node temp=head;
+        for(int i=0;i<index-1;i++){
+            temp=temp.next;
+        }
+        Node node=new Node(value);
+        node.next=temp.next;
+        temp.next=node;
+        temp.next.next.prev=node;
+        node.prev=temp;
+        size++;
+    }
+    private class Node{
+        private Node prev;
+        private int value;
+        private Node next;
+        public Node(int value){
+            this.value=value;
+        }
+        public Node(int value,Node prev,Node next){
+            this.value=value;
+            this.prev=prev;
+            this.next=next;
+        }
+    }
+    
+}
+class Main {
+    public static void main(String[] args) {
+        LinkedList ll=new LinkedList();
+        ll.insertFirst(8);
+        ll.insertFirst(10);
+        ll.insertLast(15);
+        ll.display();
+        ll.displayReverse();
+         ll.insertPosition(13,1);
+        ll.display();
+        ll.displayReverse();
+    }
+}
+```
