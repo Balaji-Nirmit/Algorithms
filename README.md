@@ -608,3 +608,81 @@ class Main {
     }
 }
 ```
+
+# circular linked list
+```java
+class LinkedList{
+    private Node head;
+    private Node tail;
+    
+    public void insert(int value){
+        Node node=new Node(value);
+        if(head==null){
+            head=node;
+            tail=node;
+            return;
+        }
+        tail.next=node;
+        node.next=head;
+        tail=node;
+    }
+    
+    public void display(){
+        Node node=head;
+        if(head!=null){
+            do{
+                System.out.print(node.value+"->");
+                node=node.next;
+            }while(node!=head);
+        }
+        System.out.println("END");
+        // used do while since it always executes minimum of one time
+    }
+    
+    public void delete(int value){
+        Node node=head;
+        if(node == null){
+            return;
+        }
+        if(node.value==value){
+            head=head.next;
+            tail.next=head;
+        }
+        do{
+            Node n=node.next;
+            if(n.value==value){
+                node.next=n.next;
+                break;
+            }
+            node=node.next;
+        }while(node!=head);
+    }
+   
+    private class Node{
+        private int value;
+        private Node next;
+        public Node(int value){
+            this.value=value;
+        }
+        public Node(int value,Node prev,Node next){
+            this.value=value;
+            this.next=next;
+        }
+    }
+    
+}
+class Main {
+    public static void main(String[] args) {
+        LinkedList ll=new LinkedList();
+        ll.insert(13);
+        ll.insert(22);
+        ll.insert(12);
+        ll.insert(21);
+        ll.insert(11);
+        ll.insert(2);
+        ll.display();
+        ll.delete(12);
+        ll.display();
+    }
+}
+```
