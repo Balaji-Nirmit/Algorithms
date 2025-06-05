@@ -686,3 +686,22 @@ class Main {
     }
 }
 ```
+
+
+# bit manipulation
+## kernighan's algorithm
+```java
+class Main {
+    public static void main(String[] args) {
+        int num=57;
+        int counter=0;
+        while(num!=0){
+            int rsbm=num & -num;
+// -num means 2s complement
+            num=num-rsbm;
+            counter++;
+        }
+        System.out.println(counter);
+    }
+}
+```
