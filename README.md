@@ -687,6 +687,21 @@ class Main {
 }
 ```
 
+# middle of linked list
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }   
+        return slow;
+    }
+}
+```
+
 
 # bit manipulation
 ## kernighan's algorithm
