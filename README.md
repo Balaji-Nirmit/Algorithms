@@ -735,3 +735,17 @@ class Main {
     }
 }
 ```
+
+## gray code 
+```java
+class Solution {
+    public List<Integer> grayCode(int n) {
+        List<Integer> arr=new ArrayList<>();
+        int total_num=1<<n;
+        for(int i=0;i<total_num;i++){
+            arr.add(i^(i>>1));
+        }
+        return arr;
+    }
+}
+```
