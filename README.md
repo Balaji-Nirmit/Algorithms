@@ -749,3 +749,22 @@ class Solution {
     }
 }
 ```
+## subsets of array(set)
+```java
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> arr=new ArrayList<>();
+        int n=1<<nums.length;// this is for 2 power num
+        for(int i=0;i<n;i++){
+            List<Integer> subArr=new ArrayList<>();
+            for(int j=0;j<nums.length;j++){
+                if((i & (1<<j)) !=0 ){
+                    subArr.add(nums[j]);
+                }
+            }
+            arr.add(subArr);
+        }
+        return arr;
+    }
+}
+```
