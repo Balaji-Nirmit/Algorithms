@@ -915,4 +915,30 @@ class Solution {
     }
 }
 ```
--- for multiple nodes
+## dfs traversal
+```java
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        ArrayList<Integer> res=new ArrayList<>();
+        boolean[] visited=new boolean[adj.size()];
+        for(int i=0;i<visited.length;i++){
+            if(!visited[i]){
+                dfsFind(i,visited,adj,res);
+            }
+        }
+        return res;
+    }
+    
+    public void dfsFind(int node,boolean[] visited,ArrayList<ArrayList<Integer>> adj,ArrayList<Integer> res){
+        visited[node]=true;
+        res.add(node);
+        for(int neighbour:adj.get(node)){
+            if(!visited[neighbour]){
+                dfsFind(neighbour,visited,adj,res);
+            }
+        }
+    }
+}
+```
