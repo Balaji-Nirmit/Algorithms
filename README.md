@@ -942,3 +942,102 @@ class Solution {
     }
 }
 ```
+
+
+# Trees
+## inorder
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        // left->root->right
+        List<Integer> res=new ArrayList<>();
+        inOrder(root,res);
+        return res;
+    }
+    public void inOrder(TreeNode node, List<Integer> res){
+        if ( node == null) return;
+        inOrder(node.left,res);
+        res.add(node.val);
+        inOrder(node.right,res);
+    }
+}
+```
+## preorder
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        // root->left->right
+        List<Integer> res=new ArrayList<>();
+        preOrder(root,res);
+        return res;
+    }
+    public void preOrder(TreeNode node, List<Integer> res){
+        if (node == null) return;
+        res.add(node.val);
+        preOrder(node.left,res);
+        preOrder(node.right,res);
+    }
+}
+```
+## postorder
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        // left->right->root
+        List<Integer> res=new ArrayList<>();
+        postOrder(root,res);
+        return res;
+    }
+    public void postOrder(TreeNode node,List<Integer> res){
+        if (node == null) return;
+        postOrder(node.left,res);
+        postOrder(node.right,res);
+        res.add(node.val);
+    }
+}
+```
